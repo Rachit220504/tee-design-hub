@@ -1,0 +1,781 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  flex-grow: 1;
+  text-align: center;
+  background-color: #0d1b2a;
+  color: white;
+  background-image: url("./assets/BackgroundMain.png");
+  background-size: cover;  
+  background-position: center;
+  overflow-x: hidden;
+  max-height: 100vh;
+  width: 100%;
+}
+.first-page {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-align: center;
+  background-color: 0,0,0,0;
+  color: white; 
+  /* background-image: url("./assets/BackgroundMain.png"); */
+  background-size: cover;
+  background-position: center;
+  overflow-x: hidden;
+  min-height: 100vh;
+  width: 100%;
+} 
+
+/* Navbar Styles */
+.navbar {
+  position: sticky; /* Ensures navbar stays visible when scrolling */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+  transition: all 0.5s ease;
+}
+
+.navbar ul{
+  list-style: none;
+  display: flex;
+  text-align: center;
+  align-items:start;
+  gap: 10px;
+  flex-wrap: wrap; /* Ensures items wrap on smaller screens */
+}
+
+
+.headerOptions {
+  position: relative;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: transparent;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s;
+  overflow: hidden;
+  z-index: 1; /* Ensure it is above the background and other elements */
+}
+
+.headerOptions:hover {
+  color: #000;
+}
+
+.headerOptions::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  transition: top 0.3s, height 0.3s;
+  z-index: -1; /* Ensure it does not overlap the text */
+}
+
+.headerOptions:hover::before {
+  top: 0;
+  height: 100%;
+}
+
+
+
+/* Logo Styles */
+.logo {
+  font-size: clamp(28px, 5vw, 48px); /* Responsive logo size */
+  color: #fca311;
+  cursor: pointer;
+  
+}
+
+/* Hero Section Styles */
+.hero-section {
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  justify-content: left;
+
+  text-align: left;
+  padding: 20px;
+  gap: 20px;
+}
+
+.text-content {
+  max-width: 90%; /* Ensures proper scaling */
+  text-align: left;
+
+}
+
+.text-content h1 {
+  margin-top: 120px;
+  font-size: clamp(28px, 5vw, 50px); /* Responsive heading */
+  line-height: 1.2;
+  text-align:left;
+  
+
+}
+
+.text-content p {
+  margin-top: 100px;
+  font-size: clamp(14px, 2.5vw, 18px); /* Responsive text */
+}
+
+.get-started {
+  margin-top: 100px;
+  padding: 10px 20px;
+  font-size: clamp(14px, 2vw, 16px);
+}
+
+/* T-shirt Carousel */
+.tshirt-carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Adjusts to screen size */
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+.tshirt {
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: row;
+    padding: 10px;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    padding-bottom: 20px;
+  }
+
+  .hero-section {
+    padding: 20px;
+    gap: 15px;
+  }
+
+  .text-content {
+
+    margin: 0;
+  
+  }
+
+  .get-started {
+    padding: 8px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .text-content h1 {
+    font-size: clamp(20px, 5vw, 40px);
+  }
+
+  .navbar ul {
+    flex-wrap: nowrap;
+    flex-direction: row;
+    text-align: center;
+  }
+
+  .get-started {
+    width: 100%;
+    padding: 10px;
+  }
+}
+/* Navbar Styles */
+
+.menu-toggler {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.menu {
+  display: flex;
+  gap: 10px;
+}
+
+.menu ul {
+  list-style: none;
+  display: flex;
+  padding-bottom: -5px;
+  gap: 10px;
+}
+
+.menu.open {
+  display: flex;
+}
+
+.headerOptions {
+  padding: 10px 20px;
+  color: #fff;
+  background-color: transparent;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.headerOptions:hover {
+  color: #000;
+}
+
+@media (max-width: 768px) {
+  .menu {
+      display: none;
+      flex-direction: column; /* Ensures vertical list */
+      position: absolute;
+      top: 40px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      padding: 0px;
+      z-index: 20;
+    }
+  .menu-toggler {
+    display: block;
+    color:white;
+  }
+
+  .menu.open {
+    display: flex;
+  }
+}
+
+.get-started {
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.get-started:hover {
+  background-color: #fca311; /* Orange tone for hover */
+  transform: translateY(-3px); /* Slight lift */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.get-started:active {
+  transform: translateY(2px); /* Pressed effect */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+.animated-button {
+  padding: 12px 24px;
+  font-size: 10px;
+  font-weight: bold;
+  color: #110c0c;
+  background: radial-gradient(45deg, #e1d0d0, #f6f3f3);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  /* width: 60px;
+  text-align: center; */
+}
+
+.animated-button::before {
+  content: "";
+  position: relative;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: skewX(-45deg);
+  transition: left 0.5s ease;
+}
+
+.animated-button:hover::before {
+  left: 100%;
+}
+
+.animated-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(45deg, #2e81b9, #afa9a9);
+}
+
+.animated-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.registerPage, .loginPage{
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* min-height: 100vh; */
+  background-color: white;
+  /* background-color: linear-gradient(135deg, #030307, #a855f7, #ec4899)  */
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  padding: 2rem;
+}
+
+.registerHeading, .loginHeading{
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1f2937;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.registerForm, .loginForm{
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+label{
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #4b5563;
+  margin-bottom: 0.5rem;
+  text-align: left;
+  display: block;
+}
+
+input{
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: #374151;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus{
+  border-color: #6266f1;
+  box-shadow: 0 0 0 2px rgba(99,102, 241, 0.5);
+  outline: none;
+}
+
+.registerButton, .loginButton{
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background-color: #6366f1;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.registerButton:hover, .loginButton:hover{
+  background-color: #4f46e5;
+  transform: translateY(-3px);
+}
+.exception{
+  font-size: 0.875rem;
+  color: #6b7280;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.exception button{
+  font-size: 0.875rem;
+  color: #6366f1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.exception button:hover{
+  text-decoration: underline;
+  color: #4f46e5;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.account-menu-item1{
+  z-index: 1000;
+  display: flex;
+  position: fixed;
+  margin-left: -40px;
+}
+.account-menu-item2{
+  z-index: 1000;
+  display: flex;
+  position: fixed;
+  margin-top: 37px;
+  margin-left: -40px;
+}
+.registerPage {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+}
+
+.hero-section.blurred{
+  filter: blur(5px); 
+  transition: filter 0.3s ease-in-out; 
+}
+
+.closeButton{
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  color: #333;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.3s ease-in-out;
+}
+
+.closeButton:hover {
+  color: #f44336; 
+}
+
+.closeButton:focus {
+  outline: none; 
+}
+/* .card img{
+   
+  height: 500px;
+  width:300px;
+} */
+
+/* Products Section */
+.products-section {
+  padding: 20px;
+  color: #000;
+  background-color: #fff;
+}
+
+.products-section h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+/* .products{
+
+  display: flex;
+  flex-direction: row;
+  
+
+} */
+/* Wrapper for First Page */
+
+
+/* Rest of the Pages */
+/* .rest-pages {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-align: center;
+  background-color: #0d1b2a; /* Same base color without the background image */
+  /* color: white;
+  overflow-x: hidden;
+  min-height: 100vh;
+  width: 100%;
+} */ 
+.gallery {
+  display: grid;
+  /* grid-auto-rows: auto; */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  padding: 20px;
+  justify-items: center;
+  align-items: center;
+}
+
+/* Card Styles */
+.card {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 250px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Image */
+.card-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+/* Card Content */
+.card-content {
+  padding: 16px;
+  text-align: center;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.card-price {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 16px;
+}
+
+.card-button {
+  display: inline-block;
+  width: 100%;
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card-button:hover {
+  background-color: #0056b3;
+}
+/* Product Details Overlay */
+.product-details-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.product-details {
+  background: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.product-details img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.product-details h2 {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.product-details p {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+.close-button {
+  padding: 8px 16px;
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  background-color: #a71d2a;
+}
+
+/* product details Styling */
+/* Overlay */
+.product-details-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow-y: auto; /* Allow scrolling for overflowing content */
+}
+
+/* Product Details Card */
+.product-details {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease-in-out;
+  max-height: 90vh; /* Ensure the modal fits within the viewport */
+  overflow-y: auto; /* Add vertical scrolling for content overflow */
+}
+
+/* Close Button */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  color: #e74c3c;
+}
+
+/* Product Image */
+.product-image {
+  height: 300px;
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+/* Product Title and Price */
+.product-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.product-price {
+  font-size: 20px;
+  color: #e67e22;
+  margin-bottom: 10px;
+}
+
+/* Product Attributes */
+.product-size, .product-color, .product-description {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+/* Buttons Container */
+.product-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Action Buttons */
+.add-to-cart-button,
+.buy-now-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  flex: 1;
+  text-align: center;
+}
+
+.add-to-cart-button {
+  background-color: #3498db;
+  color: #fff;
+}
+
+.add-to-cart-button:hover {
+  background-color: #2980b9;
+}
+
+.buy-now-button {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.buy-now-button:hover {
+  background-color: #c0392b;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* Custom Order Style */
+.customizeOrder{
+  background-color: #000;
+}
